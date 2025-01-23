@@ -5,6 +5,7 @@ import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
+import AnimatedGreeting from "@/components/AnimatedGreeting";
 
 export default function Home() {
   const scrollToSection = (sectionId: string) => {
@@ -23,6 +24,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
+          <AnimatedGreeting />
           <motion.h1
             className="text-6xl font-bold mb-4"
             initial={{ scale: 0.5 }}
