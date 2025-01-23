@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 
 import Navigation from "@/components/Navigation";
 import { ThemeProvider } from "@/context/ThemeContext";
+import CustomCursor from "@/components/CustomCursor";
 
 export default function RootLayout({
   children,
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className={`${inter.className} transition-colors duration-200`}>
         <ThemeProvider>
           <Navigation />
+          <CustomCursor />
           <main className="min-h-screen bg-gray-50 dark:bg-gradient-to-br dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
             {children}
           </main>

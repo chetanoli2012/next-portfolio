@@ -7,9 +7,16 @@ import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 
 export default function Home() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="min-h-screen">
-      <section className="h-screen flex items-center justify-center">
+      <section id="home" className="h-screen flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -38,10 +45,16 @@ export default function Home() {
             transition={{ delay: 0.8 }}
             className="space-x-4"
           >
-            <button className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-full transition-colors">
+            <button
+              onClick={() => scrollToSection("projects")}
+              className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-full transition-colors"
+            >
               View Projects
             </button>
-            <button className="border border-blue-600 hover:bg-blue-600/10 px-6 py-3 rounded-full transition-colors">
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="border border-blue-600 hover:bg-blue-600/10 px-6 py-3 rounded-full transition-colors"
+            >
               Contact Me
             </button>
           </motion.div>
