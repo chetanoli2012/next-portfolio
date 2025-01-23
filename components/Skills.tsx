@@ -32,16 +32,17 @@ export default function Skills() {
               onClick={() =>
                 setActiveCategory(category as typeof activeCategory)
               }
-              className={`px-4 py-2 rounded-full transition-all duration-300 backdrop-blur-md ${
+              className={`px-4 py-2 rounded-full transition-colors ${
                 activeCategory === category
-                  ? "bg-white/20 text-white border border-white/30 shadow-lg"
-                  : "bg-white/5 text-white/70 border border-white/10 hover:bg-white/10"
+                  ? "bg-blue-600 text-white"
+                  : "bg-blue-600/10 hover:bg-blue-600/20"
               }`}
             >
               {category.charAt(0).toUpperCase() + category.slice(1)}
             </button>
           ))}
         </div>
+
         <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" layout>
           {filteredSkills.map((skill) => (
             <motion.div
@@ -51,15 +52,15 @@ export default function Skills() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               whileHover={{ y: -5 }}
-              className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-gradient-to-br from-blue-600/10 to-purple-600/10 p-6 rounded-xl border border-gray-700"
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-medium text-white">{skill.name}</h3>
-                <span className="text-sm text-white/70">{skill.level}%</span>
+                <h3 className="text-lg font-medium">{skill.name}</h3>
+                <span className="text-sm text-gray-400">{skill.level}%</span>
               </div>
-              <div className="h-2 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
+              <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+                  className="h-full bg-blue-600"
                   initial={{ width: 0 }}
                   whileInView={{ width: `${skill.level}%` }}
                   transition={{ duration: 1, delay: 0.2 }}
