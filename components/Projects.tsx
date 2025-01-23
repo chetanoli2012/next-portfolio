@@ -26,20 +26,20 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group relative bg-gradient-to-br from-gray-50/5 to-gray-900/10 dark:from-blue-900/10 dark:to-purple-900/10 rounded-2xl border border-gray-100/10 dark:border-gray-700/50 backdrop-blur-sm overflow-hidden"
+              className="group relative bg-white/5 dark:bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 dark:border-white/10 shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500"
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >
               <div className="relative overflow-hidden rounded-2xl aspect-video group-hover:scale-[1.02] transition-transform duration-500">
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent z-10 opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent backdrop-blur-sm z-10 opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 <motion.img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transform transition-transform duration-700"
                   whileHover={{ scale: 1.1 }}
                 />
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="text-xl font-semibold mb-3 text-white/90">
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-20 bg-white/5 backdrop-blur-md transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                  <h3 className="text-xl font-semibold mb-3 text-white">
                     {project.title}
                   </h3>
                   <motion.p
@@ -49,7 +49,7 @@ export default function Projects() {
                       y: hoveredProject === project.id ? 0 : 10,
                     }}
                     transition={{ duration: 0.3 }}
-                    className="text-sm text-gray-300/90 mb-4 line-clamp-3"
+                    className="text-sm text-white/80 mb-4 line-clamp-3 backdrop-blur-sm"
                   >
                     {project.description}
                   </motion.p>
@@ -57,7 +57,7 @@ export default function Projects() {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs px-3 py-1 bg-blue-500/10 backdrop-blur-md border border-blue-500/20 rounded-full text-blue-300"
+                        className="text-xs px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white/90 hover:bg-white/20 transition-colors"
                       >
                         {tech}
                       </span>
@@ -69,8 +69,8 @@ export default function Projects() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-white/90 hover:text-blue-400 transition-colors"
-                        whileHover={{ x: 5 }}
+                        className="flex items-center gap-2 text-sm text-white/90 hover:text-white transition-colors bg-white/10 backdrop-blur-md px-4 py-2 rounded-full"
+                        whileHover={{ scale: 1.05, x: 5 }}
                       >
                         <ArrowSquareOut size={20} />
                         Live Demo
@@ -81,8 +81,8 @@ export default function Projects() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-white/90 hover:text-blue-400 transition-colors"
-                        whileHover={{ x: 5 }}
+                        className="flex items-center gap-2 text-sm text-white/90 hover:text-white transition-colors bg-white/10 backdrop-blur-md px-4 py-2 rounded-full"
+                        whileHover={{ scale: 1.05, x: 5 }}
                       >
                         <GithubLogo size={20} />
                         Code
