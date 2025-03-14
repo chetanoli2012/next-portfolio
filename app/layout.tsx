@@ -25,7 +25,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Navigation />
           <CustomCursor />
-          <main className="min-h-screen bg-gray-50 dark:bg-gradient-to-br dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
+          <main className="min-h-screen bg-gray-100 dark:bg-gradient-to-br dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
             {children}
           </main>
         </ThemeProvider>
