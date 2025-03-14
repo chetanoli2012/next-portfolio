@@ -34,7 +34,7 @@ export default function Home() {
             Chetan Oli
           </motion.h1>
           <motion.h2
-            className="text-2xl text-gray-300 mb-8"
+            className="text-2xl text-gray-500 dark:text-gray-300 mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}

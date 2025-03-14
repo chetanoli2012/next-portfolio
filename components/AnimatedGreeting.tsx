@@ -35,9 +35,9 @@ export default function AnimatedGreeting() {
           transition={{ duration: 0.5 }}
           className="absolute w-full text-center"
         >
-          <span className="text-2xl text-blue-400">
+          <span className="text-2xl text-blue-500 dark:text-blue-400">
             {greetings[index].text}{" "}
-            <span className="text-gray-400 text-sm">
+            <span className="text-gray-500 dark:text-gray-400 text-sm">
               ({greetings[index].language})
             </span>
           </span>
