@@ -51,7 +51,7 @@ export default function Contact() {
         className="max-w-4xl mx-auto"
       >
         <h2 className="text-4xl font-bold mb-8">Get in Touch</h2>
-        <p className="text-gray-300 mb-12">
+        <p className="text-gray-500 dark:text-gray-300 mb-12">
           Have a question or want to work together? Feel free to reach out!
         </p>
 
@@ -63,7 +63,10 @@ export default function Contact() {
           transition={{ delay: 0.2 }}
         >
           <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-2">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium mb-2 text-gray-500 dark:text-white"
+            >
               Name
             </label>
             <motion.input
@@ -74,13 +77,16 @@ export default function Contact() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 bg-white dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+              className="w-full px-4 py-3 bg-white dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-gray-500 dark:text-white"
               placeholder="Your name"
             />
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-2">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium mb-2 text-gray-500 dark:text-white"
+            >
               Email
             </label>
             <motion.input
@@ -91,13 +97,16 @@ export default function Contact() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 bg-white dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+              className="w-full px-4 py-3 bg-white dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-gray-500 dark:text-white"
               placeholder="your@email.com"
             />
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-2">
+            <label
+              htmlFor="message"
+              className="block text-sm font-medium mb-2 text-gray-500 dark:text-white"
+            >
               Message
             </label>
             <motion.textarea
@@ -108,7 +117,7 @@ export default function Contact() {
               onChange={handleChange}
               required
               rows={6}
-              className="w-full px-4 py-3 bg-gray-800/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none"
+              className="w-full px-4 py-3 bg-white dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none text-gray-500 dark:text-white"
               placeholder="Your message..."
             />
           </div>

@@ -21,13 +21,13 @@ export default function About() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <p className="text-lg text-gray-300">
+            <p className="text-lg text-gray-500 dark:text-gray-300">
               With over 5 years of experience in software development, I
               specialize in building modern web applications using JavaScript,
               React, and Next.js. My journey in tech has been driven by a
               passion for creating intuitive and performant user experiences.
             </p>
-            <p className="text-lg text-gray-300">
+            <p className="text-lg text-gray-500 dark:text-gray-300">
               I&apos;ve worked on various projects ranging from e-commerce
               platforms to complex enterprise applications, always focusing on
               writing clean, maintainable code and implementing best practices.
@@ -54,7 +54,9 @@ export default function About() {
                     className="flex items-center space-x-2"
                   >
                     <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                    <span>{skill}</span>
+                    <span className="text-gray-500 dark:text-gray-300">
+                      {skill}
+                    </span>
                   </motion.li>
                 ))}
               </ul>
@@ -73,23 +75,25 @@ export default function About() {
             <div className="space-y-4">
               <div className="border-l-2 border-blue-500 pl-4">
                 <h4 className="font-medium">Senior Software Developer</h4>
-                <p className="text-gray-400">2021 - Present</p>
-                <p className="text-sm text-gray-300 mt-1">
+                <p className="text-gray-500 dark:text-gray-300">
+                  2021 - Present
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">
                   Leading development of modern web applications using Next.js
                   and React
                 </p>
               </div>
               <div className="border-l-2 border-blue-500 pl-4">
                 <h4 className="font-medium">Full Stack Developer</h4>
-                <p className="text-gray-400">2019 - 2021</p>
-                <p className="text-sm text-gray-300 mt-1">
+                <p className="text-gray-500 dark:text-gray-300">2019 - 2021</p>
+                <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">
                   Developed and maintained multiple client projects
                 </p>
               </div>
               <div className="border-l-2 border-blue-500 pl-4">
                 <h4 className="font-medium">Frontend Developer</h4>
-                <p className="text-gray-400">2018 - 2019</p>
-                <p className="text-sm text-gray-300 mt-1">
+                <p className="text-gray-500 dark:text-gray-300">2018 - 2019</p>
+                <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">
                   Specialized in React-based application development
                 </p>
               </div>

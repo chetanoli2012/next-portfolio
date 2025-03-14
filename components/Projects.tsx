@@ -49,7 +49,7 @@ export default function Projects() {
                       y: hoveredProject === project.id ? 0 : 10,
                     }}
                     transition={{ duration: 0.3 }}
-                    className="text-sm text-gray-300/90 mb-4 line-clamp-3"
+                    className="text-sm text-white/80 mb-4 line-clamp-3"
                   >
                     {project.description}
                   </motion.p>
