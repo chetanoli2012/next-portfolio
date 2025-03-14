@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { JetBrains_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Chetan Oli - Software Developer",
@@ -23,12 +33,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} transition-colors duration-200`}>
+      <body
+        className={`${jetbrainsMono.variable} ${inter.variable} font-mono transition-colors duration-200`}
+      >
         <ThemeProvider>
           <Navigation />
           <CustomCursor />
           <Confetti />
-          <main className="min-h-screen bg-gray-100 dark:bg-gradient-to-br dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
+          <main className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 dark:bg-gradient-to-br dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
             {children}
           </main>
           <ScrollToTop />
