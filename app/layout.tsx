@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 import Navigation from "@/components/Navigation";
 import { ThemeProvider } from "@/context/ThemeContext";
 import CustomCursor from "@/components/CustomCursor";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function RootLayout({
   children,
@@ -28,6 +29,7 @@ export default function RootLayout({
           <main className="min-h-screen bg-gray-100 dark:bg-gradient-to-br dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
             {children}
           </main>
+          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>
