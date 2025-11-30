@@ -2,11 +2,16 @@
 
 import { ReactNode } from "react";
 import LenisProvider from "./LenisProvider";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 interface ProvidersProps {
   children: ReactNode;
 }
 
 export default function Providers({ children }: ProvidersProps) {
-  return <LenisProvider>{children}</LenisProvider>;
+  return (
+    <ThemeProvider>
+      <LenisProvider>{children}</LenisProvider>
+    </ThemeProvider>
+  );
 }

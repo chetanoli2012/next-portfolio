@@ -4,12 +4,6 @@
 
 /* Neo-Brutalist Design Tokens */
 :root {
-  --bg: #0a0a0a;
-  --fg: #fafafa;
-  --accent: #cdff00;
-  --border: #333333;
-  --muted: #666666;
-
   /* Spacing */
   --grid-gap: 1rem;
   --section-padding: clamp(4rem, 10vh, 8rem);
@@ -19,6 +13,27 @@
   --transition-base: 300ms;
   --transition-slow: 500ms;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark Mode (default) */
+:root,
+.dark {
+  --bg: #0a0a0a;
+  --fg: #fafafa;
+  --accent: #cdff00;
+  --border: #333333;
+  --muted: #666666;
+  --code-bg: #111111;
+}
+
+/* Light Mode */
+.light {
+  --bg: #fafafa;
+  --fg: #0a0a0a;
+  --accent: #7c3aed;
+  --border: #d1d5db;
+  --muted: #6b7280;
+  --code-bg: #f3f4f6;
 }
 
 /* Base Styles */
@@ -203,7 +218,7 @@ h6 {
 
 /* Code blocks */
 pre {
-  background-color: #111 !important;
+  background-color: var(--code-bg) !important;
   border: 2px solid var(--border);
   padding: 1.5rem !important;
   overflow-x: auto;

@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { List, X } from "phosphor-react";
+import { List, X, Sun, Moon } from "phosphor-react";
 import CommandPalette from "../ui/CommandPalette";
+import { useTheme } from "@/context/ThemeContext";
 
 const navItems = [
   { name: "Work", href: "/work" },
@@ -19,6 +20,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showCommandPalette, setShowCommandPalette] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -107,6 +109,31 @@ export default function Navigation() {
                 <span>⌘K</span>
               </button>
 
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className="ml-2 p-2 border-2 border-border hover:border-accent text-muted hover:text-accent transition-colors"
+                aria-label={`Switch to ${
+                  theme === "dark" ? "light" : "dark"
+                } mode`}
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={theme}
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 20, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {theme === "dark" ? (
+                      <Sun size={18} weight="bold" />
+                    ) : (
+                      <Moon size={18} weight="bold" />
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </button>
+
               {/* Resume Button */}
               <Link
                 href="/resume.pdf"
@@ -118,12 +145,25 @@ export default function Navigation() {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center gap-4">
+            <div className="md:hidden flex items-center gap-2">
               <button
                 onClick={() => setShowCommandPalette(true)}
                 className="p-2 border-2 border-border hover:border-accent text-muted hover:text-accent transition-colors"
               >
                 <span className="font-mono text-xs">⌘K</span>
+              </button>
+              <button
+                onClick={toggleTheme}
+                className="p-2 border-2 border-border hover:border-accent text-muted hover:text-accent transition-colors"
+                aria-label={`Switch to ${
+                  theme === "dark" ? "light" : "dark"
+                } mode`}
+              >
+                {theme === "dark" ? (
+                  <Sun size={20} weight="bold" />
+                ) : (
+                  <Moon size={20} weight="bold" />
+                )}
               </button>
               <button
                 onClick={toggleMenu}
