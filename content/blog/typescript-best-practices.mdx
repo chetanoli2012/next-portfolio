@@ -1,0 +1,119 @@
+---
+title: "TypeScript Best Practices for Large Codebases"
+description: "Essential TypeScript patterns and practices for maintaining large-scale applications."
+date: "2024-02-01"
+author: "Chetan Oli"
+tags: ["TypeScript", "Best Practices", "Architecture"]
+image: "https://placehold.co/1200x630/0a0a0a/CDFF00?text=TypeScript+Best+Practices"
+---
+
+# TypeScript Best Practices for Large Codebases
+
+After working with TypeScript on several large-scale projects, I've compiled a list of best practices that have helped me and my teams maintain clean, type-safe codebases.
+
+## 1. Use Strict Mode
+
+Always enable strict mode in your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true
+  }
+}
+```
+
+This catches many potential bugs at compile time rather than runtime.
+
+## 2. Prefer Type Inference
+
+TypeScript's type inference is powerful. Don't over-annotate:
+
+```tsx
+// ❌ Unnecessary type annotation
+const name: string = "Chetan";
+
+// ✅ Let TypeScript infer
+const name = "Chetan";
+
+// ✅ Annotate when necessary
+function greet(name: string): string {
+  return `Hello, ${name}!`;
+}
+```
+
+## 3. Use Discriminated Unions
+
+Discriminated unions are excellent for handling different states:
+
+```tsx
+type LoadingState = {
+  status: "loading";
+};
+
+type SuccessState = {
+  status: "success";
+  data: User[];
+};
+
+type ErrorState = {
+  status: "error";
+  error: Error;
+};
+
+type State = LoadingState | SuccessState | ErrorState;
+
+function renderState(state: State) {
+  switch (state.status) {
+    case "loading":
+      return <Spinner />;
+    case "success":
+      return <UserList users={state.data} />;
+    case "error":
+      return <Error message={state.error.message} />;
+  }
+}
+```
+
+## 4. Utility Types Are Your Friends
+
+TypeScript provides many useful utility types:
+
+```tsx
+// Partial - makes all properties optional
+type PartialUser = Partial<User>;
+
+// Pick - select specific properties
+type UserPreview = Pick<User, "id" | "name">;
+
+// Omit - exclude specific properties
+type UserWithoutPassword = Omit<User, "password">;
+
+// Record - create object types
+type UserRoles = Record<string, Role>;
+```
+
+## 5. Generic Constraints
+
+Use constraints to make generics more precise:
+
+```tsx
+interface HasId {
+  id: string;
+}
+
+function findById<T extends HasId>(items: T[], id: string): T | undefined {
+  return items.find((item) => item.id === id);
+}
+```
+
+## Conclusion
+
+TypeScript is a powerful tool when used correctly. These patterns will help you write more maintainable and type-safe code. Remember, the goal is to catch bugs at compile time and make your codebase self-documenting.
+
+---
+
+_What TypeScript patterns do you find most useful? Let me know!_

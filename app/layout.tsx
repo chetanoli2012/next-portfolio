@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Inter } from "next/font/google";
+import { JetBrains_Mono, Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import Providers from "@/components/providers";
+import Navigation from "@/components/layout/Navigation";
+import Footer from "@/components/layout/Footer";
+import PageTransition from "@/components/layout/PageTransition";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -14,17 +18,52 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Chetan Oli - Software Developer",
-  description:
-    "Portfolio of Chetan Oli, a software developer specializing in JavaScript, React, and Next.js",
-};
+// Using Space Grotesk as display font (brutalist-friendly)
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-clash",
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+});
 
-import Navigation from "@/components/Navigation";
-import { ThemeProvider } from "@/context/ThemeContext";
-import CustomCursor from "@/components/CustomCursor";
-import ScrollToTop from "@/components/ScrollToTop";
-import Confetti from "@/components/Confetti";
+export const metadata: Metadata = {
+  title: {
+    default: "Chetan Oli | Senior Software Engineer",
+    template: "%s | Chetan Oli",
+  },
+  description:
+    "Senior Software Engineer with 6+ years of frontend-heavy experience. Specializing in React, Next.js, TypeScript, and building exceptional user experiences.",
+  keywords: [
+    "Software Engineer",
+    "Frontend Developer",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "Web Development",
+  ],
+  authors: [{ name: "Chetan Oli" }],
+  creator: "Chetan Oli",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://chetanoli.dev",
+    siteName: "Chetan Oli",
+    title: "Chetan Oli | Senior Software Engineer",
+    description:
+      "Senior Software Engineer with 6+ years of frontend-heavy experience.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chetan Oli | Senior Software Engineer",
+    description:
+      "Senior Software Engineer with 6+ years of frontend-heavy experience.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function RootLayout({
   children,
@@ -34,17 +73,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${jetbrainsMono.variable} ${inter.variable} font-mono transition-colors duration-200`}
+        className={`${jetbrainsMono.variable} ${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}
       >
-        <ThemeProvider>
-          <Navigation />
-          <CustomCursor />
-          <Confetti />
-          <main className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 dark:bg-gradient-to-br dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
-            {children}
-          </main>
-          <ScrollToTop />
-        </ThemeProvider>
+        <Providers>
+          <div className="relative min-h-screen flex flex-col">
+            <Navigation />
+            <PageTransition>
+              <main className="flex-1">{children}</main>
+            </PageTransition>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   );

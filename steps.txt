@@ -1,4 +1,0 @@
-- Projects showcase with animations
-- Skills section with interactive elements
-- Contact form
-- Navigation menu

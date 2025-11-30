@@ -1,0 +1,152 @@
+---
+title: "The Complete Guide to Next.js App Router"
+description: "Everything you need to know about Next.js 14 App Router, from basics to advanced patterns."
+date: "2024-02-15"
+author: "Chetan Oli"
+tags: ["Next.js", "React", "Web Development"]
+image: "https://placehold.co/1200x630/0a0a0a/CDFF00?text=Next.js+App+Router"
+---
+
+# The Complete Guide to Next.js App Router
+
+Next.js 14 introduced significant improvements to the App Router. In this comprehensive guide, I'll walk you through everything you need to know to build modern web applications.
+
+## File-Based Routing
+
+The App Router uses a file-system based router where folders define routes:
+
+```
+app/
+├── page.tsx          # /
+├── about/
+│   └── page.tsx      # /about
+├── blog/
+│   ├── page.tsx      # /blog
+│   └── [slug]/
+│       └── page.tsx  # /blog/:slug
+└── layout.tsx        # Root layout
+```
+
+## Server Components by Default
+
+In the App Router, components are Server Components by default:
+
+```tsx
+// This is a Server Component
+async function BlogPosts() {
+  const posts = await fetchPosts(); // Direct database access!
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+## Client Components
+
+When you need interactivity, use the `"use client"` directive:
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
+}
+```
+
+## Data Fetching Patterns
+
+### Server-Side Data Fetching
+
+```tsx
+async function Page() {
+  const data = await fetch("https://api.example.com/data", {
+    next: { revalidate: 3600 }, // Revalidate every hour
+  });
+
+  return <Component data={data} />;
+}
+```
+
+### Parallel Data Fetching
+
+```tsx
+async function Page() {
+  const [users, posts] = await Promise.all([fetchUsers(), fetchPosts()]);
+
+  return (
+    <>
+      <UserList users={users} />
+      <PostList posts={posts} />
+    </>
+  );
+}
+```
+
+## Layouts and Templates
+
+Layouts persist across navigations:
+
+```tsx
+// app/layout.tsx
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <Navigation />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}
+```
+
+## Loading and Error States
+
+Create loading and error UI with special files:
+
+```tsx
+// app/blog/loading.tsx
+export default function Loading() {
+  return <Skeleton />;
+}
+
+// app/blog/error.tsx
+("use client");
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error;
+  reset: () => void;
+}) {
+  return (
+    <div>
+      <h2>Something went wrong!</h2>
+      <button onClick={reset}>Try again</button>
+    </div>
+  );
+}
+```
+
+## Conclusion
+
+The App Router represents a significant evolution in how we build Next.js applications. By embracing Server Components and the new patterns, you can build faster, more efficient applications.
+
+---
+
+_Building something with Next.js? I'd love to hear about it!_

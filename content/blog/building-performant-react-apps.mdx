@@ -1,0 +1,103 @@
+---
+title: "Building Performant React Applications"
+description: "Learn the key techniques and patterns for building blazing-fast React applications that scale."
+date: "2024-01-15"
+author: "Chetan Oli"
+tags: ["React", "Performance", "JavaScript"]
+image: "https://placehold.co/1200x630/0a0a0a/CDFF00?text=React+Performance"
+---
+
+# Building Performant React Applications
+
+Performance is a critical aspect of modern web applications. Users expect fast, responsive interfaces, and search engines reward performant sites with better rankings. In this post, I'll share the techniques I've learned over years of building React applications at scale.
+
+## Understanding React's Rendering Behavior
+
+Before we dive into optimization techniques, it's crucial to understand how React renders components. React uses a virtual DOM to efficiently update the actual DOM, but unnecessary re-renders can still impact performance.
+
+```tsx
+// This component re-renders on every parent update
+function ExpensiveComponent({ data }) {
+  return (
+    <div>
+      {data.map((item) => (
+        <ComplexItem key={item.id} {...item} />
+      ))}
+    </div>
+  );
+}
+```
+
+## Key Optimization Techniques
+
+### 1. Memoization with React.memo
+
+`React.memo` is a higher-order component that memoizes your component, preventing re-renders when props haven't changed.
+
+```tsx
+const MemoizedComponent = React.memo(function ExpensiveComponent({ data }) {
+  return (
+    <div>
+      {data.map((item) => (
+        <ComplexItem key={item.id} {...item} />
+      ))}
+    </div>
+  );
+});
+```
+
+### 2. useMemo and useCallback
+
+Use `useMemo` for expensive calculations and `useCallback` for function references:
+
+```tsx
+function SearchResults({ query, items }) {
+  const filteredItems = useMemo(() => {
+    return items.filter((item) =>
+      item.name.toLowerCase().includes(query.toLowerCase())
+    );
+  }, [query, items]);
+
+  const handleClick = useCallback((id) => {
+    console.log("Clicked:", id);
+  }, []);
+
+  return (
+    <ul>
+      {filteredItems.map((item) => (
+        <li key={item.id} onClick={() => handleClick(item.id)}>
+          {item.name}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+### 3. Code Splitting with React.lazy
+
+Split your code to load components only when needed:
+
+```tsx
+const HeavyComponent = React.lazy(() => import("./HeavyComponent"));
+
+function App() {
+  return (
+    <Suspense fallback={<Loading />}>
+      <HeavyComponent />
+    </Suspense>
+  );
+}
+```
+
+## Measuring Performance
+
+Always measure before optimizing. Use React DevTools Profiler and browser performance tools to identify actual bottlenecks.
+
+## Conclusion
+
+Performance optimization is an ongoing process. Start with the basics, measure your improvements, and iterate. Remember: premature optimization is the root of all evil, but neglecting performance entirely leads to poor user experiences.
+
+---
+
+_Have questions about React performance? Feel free to reach out on Twitter or leave a comment below._
